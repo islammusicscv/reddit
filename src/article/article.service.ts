@@ -15,7 +15,8 @@ export class ArticleService {
 
     async create(createArticle: CreateArticleDto):Promise<ArticleEntity> {
         const user_id= 1;
-        const data = {...createArticle,user:{id:user_id}};
+        const data = {...createArticle,user:{id:user_id},sub:{id:createArticle.sub_id}};
+        console.log(data);
         const article = this.articleRepository.create(data);
         return await this.articleRepository.save(article);
     }

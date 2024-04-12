@@ -18,11 +18,11 @@ export class SubController {
         return this.subService.readAll();
     }
     @Patch(':id')
-    updateSub(@Param(':id') id:number,@Body() updateSub:CreateSubDto) {
+    updateSub(@Param('id') id:number,@Body() updateSub:CreateSubDto) {
         this.subService.update(id, updateSub);
     }
     @Delete(':id')
-    deleteSub(@Param(':id') id:number) {
+    deleteSub(@Param('id') id:number) {
         this.subService.delete(id);
     }
 

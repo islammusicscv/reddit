@@ -21,6 +21,15 @@ export class SubService {
     }
 
     delete(id:number):Promise<DeleteResult> {
+        // Debugging: Log the value of id
+        console.log('Received id for deletion:', id);
+
+        // Check if id is falsy
+        if (!id) {
+            throw new Error('Invalid id for deletion');
+        }
+
+        // Call the delete method with the provided id
         return this.subRepository.delete(id);
     }
 
