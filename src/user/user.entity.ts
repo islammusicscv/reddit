@@ -22,7 +22,6 @@ export class User {
     last_name: string;
     @Column()
     email: string;
-    @Exclude()
     @Column()
     pass: string;
     @CreateDateColumn()
