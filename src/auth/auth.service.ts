@@ -14,13 +14,14 @@ export class AuthService {
     }
 
     async validate(loginDto: LoginDto) {
+        console.log("Service Auth validate");
         //preveri, če user v bazi s tem emailom obstaja
         const user:User = await this.userService.getUserByEmail(loginDto.email);
         if (!user) {
             throw new NotFoundException('Uporabnik ne obstaja');
         }
         //preverimo gesla
-        if (!(await bcrypt.compare(loginDto.pass,user.pass))) {
+        if (!(await bcrypt.compare(loginDto.password,user.pass))) {
             throw new BadRequestException('Gesli se ne ujemata');
         }
 

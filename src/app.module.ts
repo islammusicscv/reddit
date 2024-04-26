@@ -7,7 +7,6 @@ import { ArticleModule } from './article/article.module';
 import {ConfigModule} from "@nestjs/config";
 import { SubModule } from './sub/sub.module';
 import { AuthModule } from './auth/auth.module';
-import {JwtModule} from "@nestjs/jwt";
 
 @Module({
   imports: [
