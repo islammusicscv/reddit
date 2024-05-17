@@ -1,7 +1,8 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Patch, Post, UseGuards,Request} from '@nestjs/common';
 import {SubService} from "./sub.service";
 import {CreateSubDto} from "./create-sub.dto";
 import {SubEntity} from "./sub.entity";
+import {JwtGuard} from "../auth/guards/jwt.guard";
 
 @Controller('subs')
 export class SubController {
@@ -10,8 +11,10 @@ export class SubController {
     }
 
     @Post()
-    createSub(@Body() createSub:CreateSubDto):Promise<SubEntity> {
-        return this.subService.create(createSub);
+    @UseGuards(JwtGuard)
+    createSub(@Body() createSub:CreateSubDto, @Request() req):Promise<SubEntity> {
+        const userId = req.user.sub;
+        return this.subService.create(createSub,userId);
     }
     @Get()
     readAll():Promise<SubEntity[]> {

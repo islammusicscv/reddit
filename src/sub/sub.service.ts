@@ -9,9 +9,8 @@ export class SubService {
     constructor(@InjectRepository(SubEntity) private readonly subRepository:Repository<SubEntity>) {
     }
 
-    async create(createSub: CreateSubDto):Promise<SubEntity> {
-        const user_id=1;
-        const data = {...createSub,user:{id:user_id}};
+    async create(createSub: CreateSubDto,userId:  number):Promise<SubEntity> {
+        const data = {...createSub,user:{id:userId}};
         const sub = this.subRepository.create(data);
         return await this.subRepository.save(sub);
     }
