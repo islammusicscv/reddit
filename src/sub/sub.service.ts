@@ -19,6 +19,10 @@ export class SubService {
         return await this.subRepository.find();
     }
 
+    async readOne(id:number):Promise<SubEntity> {
+        return await this.subRepository.findOneBy({id});
+    }
+
     delete(id:number):Promise<DeleteResult> {
         // Debugging: Log the value of id
         console.log('Received id for deletion:', id);

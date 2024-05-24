@@ -20,6 +20,10 @@ export class SubController {
     readAll():Promise<SubEntity[]> {
         return this.subService.readAll();
     }
+    @Get(':id')
+    readOne(@Param('id') id:number):Promise<SubEntity> {
+        return this.subService.readOne(id);
+    }
     @Patch(':id')
     updateSub(@Param('id') id:number,@Body() updateSub:CreateSubDto) {
         this.subService.update(id, updateSub);
